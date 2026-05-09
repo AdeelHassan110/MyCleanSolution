@@ -1,20 +1,21 @@
+using MediatR;
+using System.Reflection;
 using Application.Interfaces;
 using Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register Repository
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
+// ? Register MediatR (Application layer ke handlers ke liye)
+builder.Services.AddMediatR(typeof(Application.DTOs.StudentDto).Assembly);
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -22,9 +23,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
