@@ -2,6 +2,7 @@ using MediatR;
 using System.Reflection;
 using Application.Interfaces;
 using Infrastructure.Repositories;
+using Application.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +12,11 @@ builder.Services.AddSwaggerGen();
 
 // Register Repository
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-Console.WriteLine("Repository registered - Main branch fix");
-
+Console.WriteLine("Repository registered - Mediator branch fix");
 // ? Register MediatR (Application layer ke handlers ke liye)
 builder.Services.AddMediatR(typeof(Application.DTOs.StudentDto).Assembly);
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
