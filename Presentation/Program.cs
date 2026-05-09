@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 // Register Repository
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+Console.WriteLine("Repository registered - MEDIATOR branch fix");
 Console.WriteLine("Repository registered - MAIN branch fix");
 builder.Services.AddMediatR(typeof(Application.DTOs.StudentDto).Assembly);
 
