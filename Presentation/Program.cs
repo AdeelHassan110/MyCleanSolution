@@ -12,8 +12,7 @@ builder.Services.AddSwaggerGen();
 
 // Register Repository
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-Console.WriteLine("Repository registered - Mediator branch fix");
-// ? Register MediatR (Application layer ke handlers ke liye)
+
 builder.Services.AddMediatR(typeof(Application.DTOs.StudentDto).Assembly);
 
 
